@@ -1,0 +1,73 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px); --radius-md: calc(var(--radius) - 2px); --radius-lg: var(--radius); --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background); --color-foreground: var(--foreground); --color-card: var(--card); --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground); --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground); --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground); --color-accent-strong: var(--accent-strong); --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground); --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring); --color-surface: var(--surface);
+  --color-sage: var(--sage); --color-success: var(--success); --color-sidebar: var(--sidebar); --color-sidebar-foreground: var(--sidebar-foreground); --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground); --color-sidebar-accent: var(--sidebar-accent); --color-sidebar-accent-foreground: var(--sidebar-accent-foreground); --color-sidebar-border: var(--sidebar-border); --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: "Gupter", "Noto Serif Devanagari", serif; --font-sans: "Hind", sans-serif;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.963 0.018 88); --foreground: oklch(0.285 0.055 132); --card: oklch(0.985 0.012 88); --card-foreground: oklch(0.285 0.055 132);
+  --popover: oklch(0.985 0.012 88); --popover-foreground: oklch(0.285 0.055 132); --primary: oklch(0.37 0.085 132); --primary-foreground: oklch(0.963 0.018 88);
+  --secondary: oklch(0.9 0.032 92); --secondary-foreground: oklch(0.31 0.06 132); --muted: oklch(0.92 0.018 88); --muted-foreground: oklch(0.52 0.035 100);
+  --accent: oklch(0.65 0.13 77); --accent-foreground: oklch(0.98 0.01 88); --accent-strong: oklch(0.52 0.12 70); --destructive: oklch(0.56 0.2 28); --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.72 0.04 100 / 58%); --input: oklch(0.68 0.045 100 / 62%); --ring: oklch(0.48 0.08 132); --surface: oklch(0.935 0.025 88);
+  --sage: oklch(0.47 0.075 128); --success: oklch(0.46 0.105 143); --sidebar: oklch(0.27 0.055 132); --sidebar-foreground: oklch(0.95 0.018 88);
+  --sidebar-primary: oklch(0.65 0.13 77); --sidebar-primary-foreground: oklch(0.2 0.04 120); --sidebar-accent: oklch(0.36 0.06 132); --sidebar-accent-foreground: oklch(0.95 0.018 88); --sidebar-border: oklch(0.95 0.018 88 / 16%); --sidebar-ring: oklch(0.65 0.13 77);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background-color: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); letter-spacing: 0; }
+  button, a, input, select, textarea { min-width: 0; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3, p { overflow-wrap: anywhere; }
+  :where(a, button, input, select, textarea):focus-visible { outline: 3px solid color-mix(in oklab, var(--color-ring) 72%, transparent); outline-offset: 3px; }
+  input::placeholder { color: var(--color-muted-foreground); opacity: 0.9; }
+  ::selection { background: var(--color-accent); color: var(--color-accent-foreground); }
+}
+
+@utility eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted-foreground); }
+@utility reveal { animation: rise 0.5s ease-out both; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+
+/* Phase 6 — printable invoice (A4 friendly, mobile friendly on screen). */
+@media print {
+  .no-print,
+  header:not(:where(.print-sheet, .print-sheet *)),
+  nav:not(:where(.print-sheet, .print-sheet *)),
+  footer:not(:where(.print-sheet, .print-sheet *)) { display: none !important; }
+  body { background: #fff; }
+  .print-sheet { max-width: none; margin: 0; padding: 0; box-shadow: none; outline: none; }
+  .print-sheet, .print-sheet * { color: #000 !important; background: transparent !important; }
+  .print-sheet table { page-break-inside: auto; }
+  .print-sheet tr { page-break-inside: avoid; }
+}
+@page { size: A4; margin: 14mm; }
+
+/* UI polish — soft field-like curve between the product-type and product sections. */
+@utility field-edge {
+  position: relative; overflow-x: clip;
+  &::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1.75rem; background: var(--color-surface); border-radius: 0 0 50% 50% / 0 0 100% 100%; pointer-events: none; }
+  & > * { position: relative; }
+}
+@media (min-width: 640px) { .field-edge::before { height: 2.5rem; } }
+/* Gentle fade/rise as the section enters view (CSS only; ignored where unsupported). */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal-on-view { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+  }
+}

@@ -1,0 +1,1 @@
+GRANT SELECT, INSERT ON public.payments TO service_role;

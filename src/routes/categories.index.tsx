@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { CategoriesPage } from "@/components/store/pages";
+export const Route = createFileRoute("/categories/")({ head: () => ({ meta: [{ title: "Product Categories | Shreekant Seeds" }, { name: "description", content: "Browse Seeds and Pesticides at Shreekant Seeds." }, { property: "og:title", content: "Product Categories | Shreekant Seeds" }, { property: "og:description", content: "Browse Seeds and Pesticides at Shreekant Seeds." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: CategoriesPage });

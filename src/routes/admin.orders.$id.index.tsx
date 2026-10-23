@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { AdminOrderDetail } from "@/components/admin/core";
+export const Route = createFileRoute("/admin/orders/$id/")({ head: () => ({ meta: [{ title: "Admin Order | Shreekant Seeds" }, { name: "description", content: "Customer order items, GST breakdown, payment and stock status." }, { property: "og:title", content: "Admin Order | Shreekant Seeds" }, { property: "og:description", content: "Customer order items, GST breakdown, payment and stock status." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: OrderDetail }); function OrderDetail(){ const { id } = Route.useParams(); return <AdminOrderDetail id={id} />; }

@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { AdminProductForm } from "@/components/admin/catalog";
+export const Route = createFileRoute("/admin/products/$id")({ head: () => ({ meta: [{ title: "Edit Product | Shreekant Seeds" }, { name: "description", content: "Demo product editing foundation." }, { property: "og:title", content: "Edit Product | Shreekant Seeds" }, { property: "og:description", content: "Merchant product form foundation." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: EditProduct }); function EditProduct(){ const { id } = Route.useParams(); return <AdminProductForm id={id} />; }

@@ -1,0 +1,1 @@
+REVOKE UPDATE ON public.orders FROM authenticated;

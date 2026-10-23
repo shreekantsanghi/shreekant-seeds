@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { AdminDiscounts } from "@/components/admin/discounts";
+export const Route = createFileRoute("/admin/discounts")({ head: () => ({ meta: [{ title: "Discounts | Shreekant Seeds" }, { name: "description", content: "Manage product and brand discounts." }, { property: "og:title", content: "Discounts | Shreekant Seeds" }, { property: "og:description", content: "Merchant product and brand discounts." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: AdminDiscounts });

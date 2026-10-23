@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shreekant-seeds",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // Output of `bun run build:cloudflare` (Nitro cloudflare-module preset)
+  "main": ".output/server/index.mjs",
+  "assets": {
+    "directory": ".output/public",
+    "binding": "ASSETS"
+  },
+  "observability": {
+  "enabled": true,
+  "issues": {
+    "enabled": true
+  }
+ },
+  // Preserve dashboard-set Variables and Secrets across deploys
+  "keep_vars": true,
+  "workers_dev": false,
+  // Phase 20: automatic transactional email dispatch every minute
+  "triggers": { "crons": ["*/1 * * * *"] },
+}

@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Outlet } from "@tanstack/react-router";
+export const Route = createFileRoute("/products")({ head: () => ({ meta: [{ title: "Products | Shreekant Seeds" }, { name: "description", content: "Browse sample seeds and pesticides from Shreekant Seeds." }, { property: "og:title", content: "Products | Shreekant Seeds" }, { property: "og:description", content: "Browse sample seeds and pesticides from Shreekant Seeds." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: () => <Outlet /> });

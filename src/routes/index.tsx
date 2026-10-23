@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { HomePage } from "@/components/store/pages";
+export const Route = createFileRoute("/")({ head: () => ({ meta: [{ title: "श्रीकान्त सीड्स | बीज और कीटनाशक" }, { name: "description", content: "नीम का थाना में बीज, कीटनाशक और स्थानीय डिलीवरी के लिए श्रीकान्त सीड्स का ऑनलाइन स्टोर।" }, { property: "og:title", content: "श्रीकान्त सीड्स | स्थानीय कृषि दुकान" }, { property: "og:description", content: "बीज और कीटनाशक की Hindi-first online store foundation." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: HomePage });
